@@ -63,7 +63,17 @@ function showNotification(text, duration = 2000) {
     }, duration);
 }
 
+// 根據使用者的裝置語言設定初始語言
+function setInitialLanguage() {
+    const userLanguage = navigator.language || navigator.userLanguage;
+    console.log(navigator.language);
+    console.log(navigator.userLanguage);
+    console.log(userLanguage);
+    const initialLanguage = userLanguage.startsWith('zh') ? 'zh' : 'en';
+    changeLanguage(initialLanguage);
+}
+
 // 初始化頁面語言
 document.addEventListener('DOMContentLoaded', function() {
-    changeLanguage('en');  // 將初始語言設置為英文
+    setInitialLanguage();
 });

@@ -22,7 +22,9 @@ function changeLanguage(lang) {
     document.getElementById('matlabCode').placeholder = translations[lang].placeholder;
     document.getElementById('removeButton').textContent = translations[lang].removeButton;
     document.getElementById('languageSelect').value = lang;
-  
+    
+    // 設置 cookie 以記住語言選擇
+    setCookie('language', lang, 365);
 }
 
 function removeComments() {
@@ -67,9 +69,37 @@ function showNotification(text, duration = 2000) {
 
 // 根據使用者的裝置語言設定初始語言
 function setInitialLanguage() {
-    const userLanguage = navigator.language || navigator.userLanguage;
-    const initialLanguage = userLanguage.startsWith('zh') ? 'zh' : 'en';
-    changeLanguage(initialLanguage);
+    const savedLanguage = getCookie('language');
+    if (savedLanguage && translations[savedLanguage]) {
+        changeLanguage(savedLanguage);
+    } else {
+        const userLanguage = navigator.language || navigator.userLanguage;
+        const initialLanguage = userLanguage.startsWith('zh') ? 'zh' : 'en';
+        changeLanguage(initialLanguage);
+    }
+}
+
+// 設置 cookie
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+// 獲取 cookie
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
 }
 
 // 初始化頁面語言

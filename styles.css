@@ -17,7 +17,8 @@ h1 {
 
 textarea {
     width: 100%;
-    height: 300px;
+    height: calc(85vh - 200px); /* 使用 calc 和 vh 單位 */
+    min-height: 200px; /* 設置最小高度 */
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #bdc3c7;

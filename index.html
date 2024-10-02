@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATLAB 註解移除器</title>
+    <title>MATLAB 註解移除器 | MATLAB Comment Remover</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>MATLAB 註解移除器</h1>
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+    <h1 id="title">MATLAB 註解移除器</h1>
     <textarea id="matlabCode" placeholder="在此輸入您的 MATLAB 代碼..."></textarea>
-    <button onclick="removeComments()">移除註解</button>
-    <div id="notification" class="notification hidden">註解已移除</div>
+    <button id="removeButton" onclick="removeComments()">移除註解</button>
+    <div id="notification" class="notification hidden"></div>
     <script src="script.js"></script>
 </body>
 </html>

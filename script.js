@@ -1,3 +1,28 @@
+const translations = {
+    zh: {
+        title: 'MATLAB 註解移除器',
+        placeholder: '在此輸入您的 MATLAB 代碼...',
+        removeButton: '移除註解',
+        notification: '註解已移除'
+    },
+    en: {
+        title: 'MATLAB Comment Remover',
+        placeholder: 'Enter your MATLAB code here...',
+        removeButton: 'Remove Comments',
+        notification: 'Comments removed'
+    }
+};
+
+let currentLanguage = 'en';  // 將默認語言設置為英文
+
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    document.getElementById('title').textContent = translations[lang].title;
+    document.getElementById('matlabCode').placeholder = translations[lang].placeholder;
+    document.getElementById('removeButton').textContent = translations[lang].removeButton;
+    document.getElementById('languageSelect').value = lang;
+}
+
 function removeComments() {
     const codeInput = document.getElementById('matlabCode');
     
@@ -20,7 +45,7 @@ function removeComments() {
     codeInput.value = code.trim();
 
     // 顯示通知
-    showNotification('註解已移除', 2000);
+    showNotification(translations[currentLanguage].notification, 2000);
 }
 
 function showNotification(text, duration = 2000) {
@@ -37,3 +62,8 @@ function showNotification(text, duration = 2000) {
         }, 300);
     }, duration);
 }
+
+// 初始化頁面語言
+document.addEventListener('DOMContentLoaded', function() {
+    changeLanguage('en');  // 將初始語言設置為英文
+});

@@ -17,10 +17,12 @@ let currentLanguage = 'en';  // 將默認語言設置為英文
 
 function changeLanguage(lang) {
     currentLanguage = lang;
+    document.title = translations[lang].title;
     document.getElementById('title').textContent = translations[lang].title;
     document.getElementById('matlabCode').placeholder = translations[lang].placeholder;
     document.getElementById('removeButton').textContent = translations[lang].removeButton;
     document.getElementById('languageSelect').value = lang;
+  
 }
 
 function removeComments() {
@@ -66,9 +68,6 @@ function showNotification(text, duration = 2000) {
 // 根據使用者的裝置語言設定初始語言
 function setInitialLanguage() {
     const userLanguage = navigator.language || navigator.userLanguage;
-    console.log(navigator.language);
-    console.log(navigator.userLanguage);
-    console.log(userLanguage);
     const initialLanguage = userLanguage.startsWith('zh') ? 'zh' : 'en';
     changeLanguage(initialLanguage);
 }

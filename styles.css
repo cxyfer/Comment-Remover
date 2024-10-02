@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 800px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 40px 0; /* 修改這裡，移除左右 padding */
     background-color: #f0f4f8;
     color: #333;
     position: relative;
@@ -16,9 +16,9 @@ h1 {
 }
 
 textarea {
-    width: 100%;
-    height: calc(85vh - 200px); /* 使用 calc 和 vh 單位 */
-    min-height: 200px; /* 設置最小高度 */
+    width: 100%; /* 修改這裡 */
+    height: calc(85vh - 150px);
+    min-height: 200px;
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #bdc3c7;
@@ -26,6 +26,7 @@ textarea {
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     resize: vertical;
+    box-sizing: border-box; /* 添加這行 */
 }
 
 button {
